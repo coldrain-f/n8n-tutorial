@@ -122,10 +122,12 @@ https://hooks.slack.com/services/[YOUR_T_ID]/[YOUR_B_ID]/[YOUR_SECRET]
 2. 검색창에 **Webhook** 입력 → **Webhook** 선택
 3. 설정:
    - HTTP Method: `POST`
-   - Path: `slack-test` (원하는 경로명)
+   - Path: 자동 생성된 UUID 그대로 사용 또는 원하는 경로명 입력
+     - 예: `c010a617-8251-47d0-85ec-1c9c49d0a56d` (자동생성)
+     - 예: `slack-test` (직접 입력)
 4. 상단의 **Test URL**을 확인 (나중에 사용):
    ```
-   http://localhost:5678/webhook-test/slack-test
+   http://localhost:5678/webhook-test/[YOUR_PATH]
    ```
 
 ### 2-4. HTTP Request 노드 추가 (Slack 전송)
@@ -163,7 +165,7 @@ https://hooks.slack.com/services/[YOUR_T_ID]/[YOUR_B_ID]/[YOUR_SECRET]
 새 터미널을 열고 아래 명령어 실행:
 
 ```bash
-curl -X POST http://localhost:5678/webhook-test/slack-test \
+curl -X POST http://localhost:5678/webhook-test/c010a617-8251-47d0-85ec-1c9c49d0a56d \
   -H "Content-Type: application/json" \
   -d '{"message": "Hello from curl!"}'
 ```
