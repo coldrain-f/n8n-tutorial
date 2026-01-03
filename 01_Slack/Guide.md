@@ -18,6 +18,56 @@ OAuth 설정 없이 5분이면 완성할 수 있어요!
 
 ---
 
+## 💡 Incoming Webhook이란?
+
+**Slack에 메시지를 보낼 수 있는 "전용 URL"** 입니다.
+
+### 일반적인 Slack API 연동
+
+1. Slack 앱 만들기
+2. OAuth 인증 설정  
+3. Bot Token 받기
+4. 권한(Scope) 설정
+5. API 호출...
+
+👆 복잡함 😵
+
+### Incoming Webhook을 쓰면?
+
+Slack이 **특별한 URL 하나**를 줍니다:
+
+```
+https://hooks.slack.com/services/[T_ID]/[B_ID]/[SECRET]
+```
+
+이 URL로 POST 요청만 보내면 끝!
+
+```bash
+curl -X POST [Webhook URL] -d '{"text": "안녕하세요!"}'
+```
+
+→ Slack 채널에 메시지 도착! ✨
+
+### 비유
+
+| 방식 | 비유 |
+|------|------|
+| **OAuth 인증** | 회원가입 → 로그인 → 글쓰기 |
+| **Incoming Webhook** | 익명 게시판 링크로 바로 글쓰기 |
+
+### 왜 "Incoming"인가?
+
+Slack 입장에서 **"외부에서 들어오는(Incoming)"** 메시지를 받는 통로이기 때문입니다.
+
+```
+[n8n] ──메시지──→ [Incoming Webhook URL] ──→ [Slack 채널]
+         (외부에서 Slack으로 들어옴)
+```
+
+> 📝 반대로 Slack에서 외부로 나가는 건 **Outgoing Webhook**이라고 합니다.
+
+---
+
 ## Step 1: Slack Incoming Webhook 만들기
 
 ### 1-1. Slack API 페이지 접속
