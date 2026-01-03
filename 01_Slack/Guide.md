@@ -156,16 +156,20 @@ https://hooks.slack.com/services/[YOUR_T_ID]/[YOUR_B_ID]/[YOUR_SECRET]
 
 ### 3-1. 워크플로우 테스트 모드 실행
 
-1. Webhook 노드 클릭
-2. 우측 패널에서 **Listen for test event** 클릭
+1. 상단 또는 하단의 **Execute workflow** 버튼 클릭
+2. "Waiting for trigger event..." 메시지가 표시됨
 3. n8n이 테스트 요청을 기다리는 상태가 됩니다
+
+> ⚠️ **중요**: 반드시 **Execute workflow를 먼저 클릭**한 상태에서 curl을 실행해야 합니다!
+> 순서가 바뀌면 `404 The requested webhook is not registered` 에러가 발생합니다.
 
 ### 3-2. 터미널에서 Webhook 호출
 
-새 터미널을 열고 아래 명령어 실행:
+**Execute workflow 클릭 후**, 새 터미널을 열고 아래 명령어 실행:
 
 ```bash
-curl -X POST http://localhost:5678/webhook-test/c010a617-8251-47d0-85ec-1c9c49d0a56d \
+# [YOUR_PATH]를 본인의 Webhook Path로 교체
+curl -X POST http://localhost:5678/webhook-test/[YOUR_PATH] \
   -H "Content-Type: application/json" \
   -d '{"message": "Hello from curl!"}'
 ```
